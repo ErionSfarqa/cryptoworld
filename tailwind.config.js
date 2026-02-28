@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-import plugin from "tailwindcss/plugin";
+const plugin = require("tailwindcss/plugin");
 
-export default {
+module.exports = {
   content: [
     "./*.html",
     "./auth/**/*.html",
@@ -220,7 +220,7 @@ export default {
         vignette:
           "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%)",
         "new-crypto":
-          "linear-gradient(110deg, rgba(6, 10, 22, 0.84) 8%, rgba(6, 10, 22, 0.66) 46%, rgba(6, 10, 22, 0.45) 100%), url(\"/newtocrypto.webp\")",
+          "linear-gradient(110deg, rgba(6, 10, 22, 0.84) 8%, rgba(6, 10, 22, 0.66) 46%, rgba(6, 10, 22, 0.45) 100%), url(\"../newtocrypto.webp\")",
       },
       backgroundPosition: {
         "right-12": "right 12px center",
@@ -276,14 +276,14 @@ export default {
             fontStyle: "normal",
             fontWeight: "300 700",
             fontDisplay: "swap",
-            src: "url('/assets/fonts/oswald-300.woff2') format('woff2')",
+            src: "url('../assets/fonts/oswald-300.woff2') format('woff2')",
           },
           {
             fontFamily: "Inter",
             fontStyle: "normal",
             fontWeight: "300 700",
             fontDisplay: "swap",
-            src: "url('/assets/fonts/inter-300.woff2') format('woff2')",
+            src: "url('../assets/fonts/inter-300.woff2') format('woff2')",
           },
         ],
       });
