@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How decentralized networks agree on a single version of the truth.">
+    <title>What is a blockchain consensus mechanism? - Crypto World</title>
+    <link rel="stylesheet" href="../../styles/output.css">
+    <link rel="icon" href="../../assets/logo.jpeg" type="image/jpeg">
+</head>
+
+<body class="min-h-screen flex flex-col font-body bg-bg-primary text-text-primary leading-16 overflow-x-hidden antialiased relative selection:bg-accent/30 selection:text-white before:content-[''] before:fixed before:inset-0 before:bg-mesh before:pointer-events-none before:z-0 after:content-[''] after:fixed after:inset-0 after:bg-noise after:opacity-[0.025] after:pointer-events-none after:z-0">
+    <header>
+    <nav class="fixed inset-x-0 top-0 z-[1000] flex h-header items-center px-8 max-md:px-4 bg-bg-primary/85 backdrop-blur-20 border-b border-accent/8">
+        <div class="mx-auto w-full max-w-layout px-6 relative z-[1]">
+            <a href="../../index.html" class="flex items-center gap-2 font-display text-base-13 font-bold uppercase tracking-cw-2 text-text-primary no-underline [&>img]:h-9 [&>img]:w-9 [&>img]:rounded-lg [&>img]:object-cover">
+                <img src="../../assets/logo.jpeg" alt="Crypto World Logo">
+                <span>Crypto World</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../../auth/login.html" class="inline-flex items-center justify-center gap-2 font-body text-base-95 font-semibold py-3 px-7 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-transparent text-text-secondary py-2 px-4 hover:text-text-primary hover:bg-white/5">Log In</a>
+                <a href="../../auth/signup.html" class="inline-flex items-center justify-center gap-2 font-body text-base-95 font-semibold py-3 px-7 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-accent-gradient text-white shadow-accent-btn hover:-translate-y-0.5 hover:shadow-accent-btn-strong active:translate-y-0">Create Account</a>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <main id="appMain" class="flex-1">
+    
+    <div class="fixed inset-0 bg-vignette pointer-events-none z-0"></div>
+
+    <section class="pt-144 pb-20 text-center">
+        <div class="mx-auto w-full max-w-layout px-6 relative z-[1]">
+            <div class="inline-block px-4 py-1.5 bg-accent/10 border border-accent/20 rounded-20 text-xs-78 font-semibold text-accent-light uppercase tracking-cw-1 mb-6">Blockchain</div>
+            <h1 class="font-display text-display-1 font-semibold uppercase tracking-cw-1 leading-12 text-text-primary">What is a blockchain consensus mechanism?</h1>
+            <p class="text-text-secondary leading-17">How decentralized networks agree on a single version of the truth.</p>
+        </div>
+    </section>
+
+    <section class="py-20 relative z-[1]">
+        <div class="mx-auto w-full max-w-layout px-6 relative z-[1] max-w-800 text-base-1 leading-18 text-text-secondary">
+            <img src="../../assets/images/whatisblockchainconsensus.webp" alt="What is a blockchain consensus mechanism?">
+            <p class="text-text-secondary leading-17">Consensus mechanisms let decentralized networks validate transactions without a central authority.</p>
+            <p class="text-text-secondary leading-17">They balance security, scalability, and decentralization through incentives and penalties.</p>
+            <p class="text-text-secondary leading-17">Proof-of-work and proof-of-stake are the most common models in use today.</p>
+            <ul>
+                <li>Security vs scalability</li>
+                <li>Validator incentives</li>
+                <li>Fork resolution</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="py-20 relative z-[1]">
+        <div class="mx-auto w-full max-w-layout px-6 relative z-[1]">
+            <div class="text-center mb-12 [&>h2]:mb-4 [&>h2]:text-text-primary [&>h2]:font-display [&>h2]:font-semibold [&>h2]:uppercase [&>h2]:tracking-cw-05 [&>h2]:text-display-2 [&>p]:max-w-600 [&>p]:mx-auto [&>p]:text-base-105 [&>p]:leading-17 [&>p]:text-text-secondary">
+                <h2 class="font-display text-display-2 font-semibold uppercase tracking-cw-05 leading-12 text-text-primary">Related articles</h2>
+            </div>
+            <div class="grid grid-cols-article-grid gap-30 items-stretch max-lg:grid-cols-article-grid-lg max-md:grid-cols-1">
+                <a class="block text-inherit no-underline" href="../proof-of-work-vs-proof-of-stake/">
+                    <img src="../../assets/images/proofofworkvsproofofstake.webp" alt="Proof-of-work vs. proof-of-stake" class="w-full aspect-[4/3] h-auto object-cover block rounded-cw-md">
+                    <div class="pt-4">
+                        <h3 class="text-base-1 leading-14 text-text-primary mb-1">Proof-of-work vs. proof-of-stake</h3>
+                        <p class="text-xs-9 text-text-secondary m-0">Compare security, energy use, and incentives.</p>
+                    </div>
+                </a>
+                <a class="block text-inherit no-underline" href="../what-is-blockchain-technology/">
+                    <img src="../../assets/images/whatisblockchaintech.webp" alt="What is blockchain technology?" class="w-full aspect-[4/3] h-auto object-cover block rounded-cw-md">
+                    <div class="pt-4">
+                        <h3 class="text-base-1 leading-14 text-text-primary mb-1">What is blockchain technology?</h3>
+                        <p class="text-xs-9 text-text-secondary m-0">A simple look at blocks, ledgers, and trustless networks.</p>
+                    </div>
+                </a>
+                <a class="block text-inherit no-underline" href="../what-is-cryptocurrency/">
+                    <img src="../../assets/images/whatiscryptocurrency.webp" alt="What is cryptocurrency?" class="w-full aspect-[4/3] h-auto object-cover block rounded-cw-md">
+                    <div class="pt-4">
+                        <h3 class="text-base-1 leading-14 text-text-primary mb-1">What is cryptocurrency?</h3>
+                        <p class="text-xs-9 text-text-secondary m-0">Digital assets secured by cryptography and powered by blockchains.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    </main>
+    
+
+
+    <script type="module" src="/js/footer.js"></script>
+    <cw-footer class="block w-full"></cw-footer>
+</body>
+
+</html>
+
+

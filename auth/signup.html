@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your Crypto World account - Start trading crypto with professional tools.">
+    <title>Sign Up - Crypto World</title>
+    <link rel="stylesheet" href="../styles/output.css">
+    <link rel="icon" href="../assets/logo.jpeg" type="image/jpeg">
+</head>
+
+<body class="min-h-screen flex flex-col font-body bg-bg-primary text-text-primary leading-16 overflow-x-hidden antialiased relative selection:bg-accent/30 selection:text-white before:content-[''] before:fixed before:inset-0 before:bg-mesh before:pointer-events-none before:z-0 after:content-[''] after:fixed after:inset-0 after:bg-noise after:opacity-[0.025] after:pointer-events-none after:z-0">
+    <header>
+    </header>
+
+    <main id="appMain" class="flex-1">
+    
+    <div class="fixed inset-0 bg-vignette pointer-events-none z-0"></div>
+
+    <div class="relative z-[1] flex min-h-screen items-center justify-center p-8">
+        <div class="relative w-full max-w-440 rounded-cw-xl border border-bg-glass-border bg-bg-glass py-12 px-8 backdrop-blur-20 shadow-card-glow overflow-hidden before:content-[''] before:absolute before:top-[-1px] before:left-[-1px] before:right-[-1px] before:h-[2px] before:bg-accent-line max-[480px]:py-8 max-[480px]:px-4">
+            <a href="../index.html" class="flex items-center justify-center gap-2 mb-8 no-underline [&>img]:w-10 [&>img]:h-10 [&>img]:rounded-lg [&>img]:object-cover [&>span]:font-display [&>span]:text-base-12 [&>span]:font-bold [&>span]:uppercase [&>span]:tracking-cw-2 [&>span]:text-text-primary">
+                <img src="../assets/logo.jpeg" alt="Crypto World">
+                <span>Crypto World</span>
+            </a>
+
+            <h2 class="text-center font-display text-base-16 font-semibold uppercase mb-2">Create Account</h2>
+            <p class="text-center text-text-secondary text-xs-9 mb-8">Join Crypto World and start your trading journey</p>
+
+            <div class="hidden bg-danger/12 border border-danger/30 rounded-cw-sm px-4 py-3 text-danger text-xs-88 mb-4" id="authError"></div>
+            <div class="hidden bg-success/12 border border-success/30 rounded-cw-sm px-4 py-3 text-success text-xs-88 mb-4 text-center" id="authSuccess"></div>
+
+            <form id="signupForm">
+                <div class="mb-6">
+                    <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05" for="email">Email Address</label>
+                    <input type="email" id="email" class="w-full py-13 px-4 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 transition-[border-color,box-shadow] duration-250 ease-cw-ease outline-none placeholder:text-text-muted hover:border-accent/25 focus:border-accent focus:shadow-input-focus" placeholder="you@example.com" required
+                        autocomplete="email">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05" for="password">Password</label>
+                    <input type="password" id="password" class="w-full py-13 px-4 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 transition-[border-color,box-shadow] duration-250 ease-cw-ease outline-none placeholder:text-text-muted hover:border-accent/25 focus:border-accent focus:shadow-input-focus" placeholder="Create a strong password"
+                        required autocomplete="new-password" minlength="6">
+                    <div class="mt-2" id="pwStrength">
+                        <div class="flex gap-1 mb-1.5">
+                            <div class="flex-1 h-1 rounded-sm bg-accent/12 transition-colors duration-300 ease-cw-ease" id="pwBar1"></div>
+                            <div class="flex-1 h-1 rounded-sm bg-accent/12 transition-colors duration-300 ease-cw-ease" id="pwBar2"></div>
+                            <div class="flex-1 h-1 rounded-sm bg-accent/12 transition-colors duration-300 ease-cw-ease" id="pwBar3"></div>
+                            <div class="flex-1 h-1 rounded-sm bg-accent/12 transition-colors duration-300 ease-cw-ease" id="pwBar4"></div>
+                        </div>
+                        <span class="text-xs-75 font-medium text-text-muted transition-colors duration-300 ease-cw-ease" id="pwLabel"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center gap-2 font-body text-base-95 font-semibold py-3 px-7 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-accent-gradient text-white shadow-accent-btn hover:-translate-y-0.5 hover:shadow-accent-btn-strong active:translate-y-0 w-full" id="signupBtn">Create Account</button>
+            </form>
+
+            <div class="text-center mt-8 text-xs-88 text-text-secondary">
+                Already have an account? <a href="./login.html">Log in</a>
+            </div>
+        </div>
+    </div>
+    </main>
+    
+
+
+    <script type="module">
+        import { initRouteGuard } from '../js/router.js';
+        import { signUp, calcPasswordStrength } from '../js/auth.js';
+        import { setButtonLoading } from '../js/ui.js';
+        import { log } from '../js/config.js';
+        import { getQueryParam } from '../js/utils.js';
+
+        async function init() {
+            const allowed = await initRouteGuard();
+            if (!allowed) return;
+
+            const form = document.getElementById('signupForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const btn = document.getElementById('signupBtn');
+            const errorEl = document.getElementById('authError');
+            const successEl = document.getElementById('authSuccess');
+            const bars = [
+                document.getElementById('pwBar1'),
+                document.getElementById('pwBar2'),
+                document.getElementById('pwBar3'),
+                document.getElementById('pwBar4'),
+            ];
+            const pwLabel = document.getElementById('pwLabel');
+
+            const prefillEmail = getQueryParam('email');
+            if (prefillEmail) {
+                emailInput.value = prefillEmail;
+                passwordInput.focus();
+            }
+
+            passwordInput.addEventListener('input', () => {
+                const { level, label } = calcPasswordStrength(passwordInput.value);
+                const baseBarClasses = 'flex-1 h-1 rounded-sm transition-colors duration-300 ease-cw-ease';
+                const barColors = ['bg-accent/12', 'bg-danger', 'bg-warning', 'bg-success', 'bg-strength-4'];
+
+                bars.forEach((bar, i) => {
+                    const colorClass = i < level ? barColors[level] : barColors[0];
+                    bar.className = `${baseBarClasses} ${colorClass}`;
+                });
+
+                pwLabel.textContent = label;
+                const labelClasses = ['text-text-muted', 'text-danger', 'text-warning', 'text-success', 'text-strength-4'];
+                pwLabel.classList.remove('text-text-muted', 'text-danger', 'text-warning', 'text-success', 'text-strength-4');
+                pwLabel.classList.add(labelClasses[level] || 'text-text-muted');
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorEl.classList.add('hidden');
+                successEl.classList.add('hidden');
+                setButtonLoading(btn, true);
+
+                try {
+                    const email = emailInput.value.trim();
+                    const password = passwordInput.value;
+
+                    const data = await signUp(email, password);
+                    log('Signup result:', data);
+
+                    if (data.user && data.user.identities && data.user.identities.length === 0) {
+                        errorEl.textContent = 'An account with this email already exists. Please log in.';
+                        errorEl.classList.remove('hidden');
+                        setButtonLoading(btn, false, 'Create Account');
+                        return;
+                    }
+
+                    if (data.session) {
+                        log('Auto-confirmed, redirecting to dashboard');
+                        window.location.href = '../app/dashboard.html';
+                    } else {
+                        successEl.innerHTML = '<strong>Check your email!</strong><br>We\'ve sent a confirmation link to <strong>' + email + '</strong>. Click it to activate your account.';
+                        successEl.classList.remove('hidden');
+                        form.classList.add('hidden');
+                        setButtonLoading(btn, false, 'Create Account');
+                    }
+                } catch (err) {
+                    log('Signup error:', err.message);
+                    errorEl.textContent = err.message || 'Sign up failed. Please try again.';
+                    errorEl.classList.remove('hidden');
+                    setButtonLoading(btn, false, 'Create Account');
+                }
+            });
+        }
+
+        init();
+    </script>
+    <script type="module" src="../js/footer.js"></script>
+    <cw-footer class="block w-full"></cw-footer>
+</body>
+
+</html>
+

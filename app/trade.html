@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade - Crypto World</title>
+    <link rel="stylesheet" href="../styles/output.css">
+    <link rel="icon" href="../assets/logo.jpeg" type="image/jpeg">
+</head>
+
+<body class="min-h-screen flex flex-col font-body bg-bg-primary text-text-primary leading-16 overflow-x-hidden antialiased relative selection:bg-accent/30 selection:text-white before:content-[''] before:fixed before:inset-0 before:bg-mesh before:pointer-events-none before:z-0 after:content-[''] after:fixed after:inset-0 after:bg-noise after:opacity-[0.025] after:pointer-events-none after:z-0" data-has-bottom-nav="true">
+    <header>
+    </header>
+
+    <main id="appMain" class="flex-1">
+    
+    <div class="fixed inset-0 bg-vignette pointer-events-none z-0"></div>
+    <div class="relative z-[1] flex min-h-full">
+        <aside class="fixed inset-y-0 left-0 w-sidebar bg-bg-primary/95 border-r border-border flex flex-col z-[100] backdrop-blur-20 max-md:hidden">
+            <a href="../index.html" class="flex items-center gap-2 px-6 py-6 no-underline border-b border-border [&>img]:w-8 [&>img]:h-8 [&>img]:rounded-md [&>img]:object-cover [&>span]:font-display [&>span]:text-base-1 [&>span]:font-bold [&>span]:uppercase [&>span]:tracking-cw-2 [&>span]:text-text-primary"><img src="../assets/logo.jpeg" alt="CW"><span>Crypto
+                    World</span></a>
+            <nav class="flex-1 flex flex-col py-4">
+                <a href="./dashboard.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="dashboard"></span> Dashboard</a>
+                <a href="./markets.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="markets"></span> Markets</a>
+                <a href="./trade.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6 text-accent-light bg-accent/10 border-accent hover:text-accent-light hover:bg-accent/10"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-100" data-icon="trade"></span> Trade</a>
+                <a href="./history.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="history"></span> History</a>
+                <a href="./positions.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="positions"></span> Positions</a>
+            </nav>
+            <div class="px-6 py-4 border-t border-border"><a href="#" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6" id="logoutBtn"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="logout"></span>
+                    Logout</a></div>
+        </aside>
+
+        <div class="flex-1 ml-sidebar p-8 min-h-full max-md:ml-0 max-md:p-4 max-md:pb-20">
+            <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+                <h1 class="font-display text-base-16 font-semibold uppercase tracking-cw-1">Trade</h1>
+                <div class="flex gap-4 items-center flex-wrap">
+                    <select class="w-full py-13 pl-4 pr-9 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 cursor-pointer outline-none appearance-none bg-select-chevron bg-no-repeat bg-right-12 transition-[border-color,box-shadow] duration-250 ease-cw-ease focus:border-accent focus:shadow-input-focus max-w-180" id="symbolSelect">
+                        <option value="BTCUSDT">BTC / USDT</option>
+                        <option value="ETHUSDT">ETH / USDT</option>
+                        <option value="SOLUSDT">SOL / USDT</option>
+                        <option value="BNBUSDT">BNB / USDT</option>
+                    </select>
+                    <input type="text" class="w-full py-13 px-4 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 transition-[border-color,box-shadow] duration-250 ease-cw-ease outline-none placeholder:text-text-muted hover:border-accent/25 focus:border-accent focus:shadow-input-focus max-w-160" id="symbolSearch" placeholder="Search..."
+                       >
+                    <button class="inline-flex items-center justify-center gap-2 font-body text-base-95 font-semibold py-3 px-7 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-accent/10 text-accent-light border border-border hover:bg-accent/18 hover:border-border-hover hover:-translate-y-px text-xs-85 py-2 px-4" id="fullscreenBtn" type="button">Fullscreen</button>
+                </div>
+            </div>
+
+            <div class="relative min-h-0" id="tradeFullscreenShell">
+                <button class="hidden absolute top-4 right-4 w-9 h-9 rounded-full border border-white/24 bg-bg-deep/78 text-white font-bold cursor-pointer z-[25]" id="fullscreenExitBtn" type="button" aria-label="Exit fullscreen">X</button>
+                <button class="hidden absolute left-1/2 bottom-5 -translate-x-1/2 border border-white/20 rounded-full bg-bg-deep/82 text-text-primary font-semibold text-xs-75 px-3.5 py-2 z-[24]" id="fullscreenOrderToggle" type="button" aria-controls="tradePanel" aria-expanded="false">Order Ticket</button>
+
+                <div class="grid grid-cols-trade-layout gap-8 max-lg:grid-cols-1" id="tradeLayout">
+                    <div class="bg-bg-card border border-border rounded-cw-md overflow-hidden relative h-520 max-md:h-360" id="chartContainer">
+                        <div id="tvChart"></div>
+                    </div>
+
+                    <aside class="bg-bg-card border border-border rounded-cw-md p-6" id="tradePanel">
+                        <div class="flex items-center justify-between mb-4 pb-4 border-b border-border">
+                            <div>
+                                <div class="text-xs-75 text-text-muted uppercase font-semibold tracking-cw-05">
+                                    Demo Balance</div>
+                                <div id="balanceDisplay" class="font-display text-base-13 font-bold text-success">
+                                    $10,000.00</div>
+                                <div id="freeMarginDisplay" class="text-xs-72 text-text-muted mt-1">
+                                    Free Margin: $10,000.00
+                                </div>
+                                <div id="usedMarginDisplay" class="text-xs-72 text-text-muted">
+                                    Used Margin: $0.00
+                                </div>
+                            </div>
+                            <div class="inline-flex items-center px-2.5 py-3px rounded-20 text-xs-7 font-semibold uppercase bg-info/12 text-info">PAPER</div>
+                        </div>
+                        <div class="flex mb-6 border-b border-border">
+                            <button class="flex-1 py-3 text-center bg-transparent border-b-2 border-transparent font-display text-base-95 font-semibold uppercase text-text-muted transition-all duration-200 ease-cw-ease cursor-pointer hover:text-text-secondary text-success border-b-success hover:text-success" id="tabBuy" data-side="BUY">Buy</button>
+                            <button class="flex-1 py-3 text-center bg-transparent border-b-2 border-transparent font-display text-base-95 font-semibold uppercase text-text-muted transition-all duration-200 ease-cw-ease cursor-pointer hover:text-text-secondary" id="tabSell" data-side="SELL">Sell</button>
+                        </div>
+
+                        <div id="currentPrice" class="text-center text-base-14 font-bold mb-6 font-display">
+                            $--</div>
+
+                        <div class="mb-6">
+                            <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05">Units (e.g. 100,000)</label>
+                            <input type="number" class="w-full py-13 px-4 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 transition-[border-color,box-shadow] duration-250 ease-cw-ease outline-none placeholder:text-text-muted hover:border-accent/25 focus:border-accent focus:shadow-input-focus" id="quantityInput" placeholder="Lot size (units)"
+                                min="1" step="any">
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05">Leverage</label>
+                            <select class="w-full py-13 pl-4 pr-9 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 cursor-pointer outline-none appearance-none bg-select-chevron bg-no-repeat bg-right-12 transition-[border-color,box-shadow] duration-250 ease-cw-ease focus:border-accent focus:shadow-input-focus" id="leverageSelect">
+                                <option value="1">1x</option>
+                                <option value="5">5x</option>
+                                <option value="10">10x</option>
+                                <option value="20">20x</option>
+                                <option value="30" selected>30x</option>
+                                <option value="50">50x</option>
+                                <option value="100">100x</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-1">
+                                <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05">Notional Value</label>
+                                <span id="estimatedTotal" class="font-semibold">$0.00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05 text-accent-light">Margin Required</label>
+                                <span id="estimatedMargin" class="font-semibold text-accent-light">$0.00</span>
+                            </div>
+                        </div>
+
+                        <button class="inline-flex items-center justify-center gap-2 font-body text-base-95 font-semibold py-3 px-7 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-success-gradient text-white hover:-translate-y-0.5 hover:shadow-success-btn w-full text-base-105 py-3.5 px-9" id="orderBtn" type="button">Buy</button>
+
+                        <div class="hidden bg-danger/12 border border-danger/30 rounded-cw-sm px-4 py-3 text-danger text-xs-88 mb-4 mt-4" id="tradeError"></div>
+                        <div class="hidden mt-3" id="tradeErrorActions">
+                            <a href="./positions.html" class="inline-flex items-center justify-center gap-2 font-body text-xs-85 font-semibold py-2 px-4 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-accent/10 text-accent-light border border-border hover:bg-accent/18 hover:border-border-hover hover:-translate-y-px">Go to Positions</a>
+                        </div>
+                        <div class="mb-6 mt-4 text-center">
+                            <button class="inline-flex items-center justify-center gap-2 font-body text-base-95 font-semibold py-3 px-7 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-accent/10 text-accent-light border border-border hover:bg-accent/18 hover:border-border-hover hover:-translate-y-px text-xs-85 py-2 px-4 w-full" id="resetBalanceBtn" type="button">Reset Demo Balance</button>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="hidden fixed inset-x-0 bottom-0 bg-bg-primary/95 border-t border-border backdrop-blur-20 z-[100] py-2 pb-[max(8px,env(safe-area-inset-bottom))] max-md:block">
+        <div class="flex items-center justify-around">
+            <a href="./dashboard.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="dashboard"></span>Dashboard</a>
+            <a href="./markets.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="markets"></span>Markets</a>
+            <a href="./trade.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary text-accent-light"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="trade"></span>Trade</a>
+            <a href="./history.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="history"></span>History</a>
+            <a href="./positions.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="positions"></span>Positions</a>
+        </div>
+    </nav>
+    </main>
+    <script type="module" src="../js/nav-icons.js"></script>
+    <script type="module" src="../js/trade.js"></script>
+    <script type="module" src="../js/footer.js"></script>
+    <cw-footer class="block w-full"></cw-footer>
+</body>
+
+</html>
+
+

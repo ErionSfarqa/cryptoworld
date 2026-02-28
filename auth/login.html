@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Log in to Crypto World - Access your professional crypto trading dashboard.">
+    <title>Log In - Crypto World</title>
+    <link rel="stylesheet" href="../styles/output.css">
+    <link rel="icon" href="../assets/logo.jpeg" type="image/jpeg">
+</head>
+
+<body class="min-h-screen flex flex-col font-body bg-bg-primary text-text-primary leading-16 overflow-x-hidden antialiased relative selection:bg-accent/30 selection:text-white before:content-[''] before:fixed before:inset-0 before:bg-mesh before:pointer-events-none before:z-0 after:content-[''] after:fixed after:inset-0 after:bg-noise after:opacity-[0.025] after:pointer-events-none after:z-0">
+    <header>
+    </header>
+
+    <main id="appMain" class="flex-1">
+    
+    <div class="fixed inset-0 bg-vignette pointer-events-none z-0"></div>
+
+    <div class="relative z-[1] flex min-h-screen items-center justify-center p-8">
+        <div class="relative w-full max-w-440 rounded-cw-xl border border-bg-glass-border bg-bg-glass py-12 px-8 backdrop-blur-20 shadow-card-glow overflow-hidden before:content-[''] before:absolute before:top-[-1px] before:left-[-1px] before:right-[-1px] before:h-[2px] before:bg-accent-line max-[480px]:py-8 max-[480px]:px-4">
+            <a href="../index.html" class="flex items-center justify-center gap-2 mb-8 no-underline [&>img]:w-10 [&>img]:h-10 [&>img]:rounded-lg [&>img]:object-cover [&>span]:font-display [&>span]:text-base-12 [&>span]:font-bold [&>span]:uppercase [&>span]:tracking-cw-2 [&>span]:text-text-primary">
+                <img src="../assets/logo.jpeg" alt="Crypto World">
+                <span>Crypto World</span>
+            </a>
+
+            <h2 class="text-center font-display text-base-16 font-semibold uppercase mb-2">Welcome Back</h2>
+            <p class="text-center text-text-secondary text-xs-9 mb-8">Log in to your account to continue trading</p>
+
+            <div class="hidden bg-danger/12 border border-danger/30 rounded-cw-sm px-4 py-3 text-danger text-xs-88 mb-4" id="authError"></div>
+
+            <form id="loginForm">
+                <div class="mb-6">
+                    <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05" for="email">Email Address</label>
+                    <input type="email" id="email" class="w-full py-13 px-4 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 transition-[border-color,box-shadow] duration-250 ease-cw-ease outline-none placeholder:text-text-muted hover:border-accent/25 focus:border-accent focus:shadow-input-focus" placeholder="you@example.com" required
+                        autocomplete="email">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block font-body text-xs-85 font-medium text-text-secondary mb-2 uppercase tracking-cw-05" for="password">Password</label>
+                    <input type="password" id="password" class="w-full py-13 px-4 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 transition-[border-color,box-shadow] duration-250 ease-cw-ease outline-none placeholder:text-text-muted hover:border-accent/25 focus:border-accent focus:shadow-input-focus" placeholder="Enter your password" required
+                        autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center gap-2 font-body text-base-95 font-semibold py-3 px-7 rounded-cw-sm cursor-pointer transition-all duration-250 ease-cw-ease relative overflow-hidden no-underline whitespace-nowrap bg-accent-gradient text-white shadow-accent-btn hover:-translate-y-0.5 hover:shadow-accent-btn-strong active:translate-y-0 w-full" id="loginBtn">Log In</button>
+            </form>
+
+            <div class="text-center mt-8 text-xs-88 text-text-secondary">
+                Don't have an account? <a href="./signup.html">Create one</a>
+            </div>
+        </div>
+    </div>
+    </main>
+    
+
+
+    <script type="module">
+        import { initRouteGuard } from '../js/router.js';
+        import { signIn } from '../js/auth.js';
+        import { setButtonLoading } from '../js/ui.js';
+        import { log } from '../js/config.js';
+        import { getQueryParam } from '../js/utils.js';
+
+        async function init() {
+            const allowed = await initRouteGuard();
+            if (!allowed) return;
+
+            const form = document.getElementById('loginForm');
+            const btn = document.getElementById('loginBtn');
+            const errorEl = document.getElementById('authError');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorEl.classList.add('hidden');
+                setButtonLoading(btn, true);
+
+                try {
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value;
+
+                    await signIn(email, password);
+                    log('Login successful');
+
+                    const next = getQueryParam('next');
+                    window.location.href = next ? decodeURIComponent(next) : '../app/dashboard.html';
+                } catch (err) {
+                    log('Login error:', err.message);
+                    errorEl.textContent = err.message || 'Login failed. Please check your credentials.';
+                    errorEl.classList.remove('hidden');
+                    setButtonLoading(btn, false, 'Log In');
+                }
+            });
+        }
+
+        init();
+    </script>
+    <script type="module" src="../js/footer.js"></script>
+    <cw-footer class="block w-full"></cw-footer>
+</body>
+
+</html>
+

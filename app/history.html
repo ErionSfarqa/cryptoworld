@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Crypto World</title>
+    <link rel="stylesheet" href="../styles/output.css">
+    <link rel="icon" href="../assets/logo.jpeg" type="image/jpeg">
+</head>
+
+<body class="min-h-screen flex flex-col font-body bg-bg-primary text-text-primary leading-16 overflow-x-hidden antialiased relative selection:bg-accent/30 selection:text-white before:content-[''] before:fixed before:inset-0 before:bg-mesh before:pointer-events-none before:z-0 after:content-[''] after:fixed after:inset-0 after:bg-noise after:opacity-[0.025] after:pointer-events-none after:z-0" data-has-bottom-nav="true">
+    <header>
+    </header>
+
+    <main id="appMain" class="flex-1">
+    
+    <div class="fixed inset-0 bg-vignette pointer-events-none z-0"></div>
+    <div class="relative z-[1] flex min-h-full">
+        <aside class="fixed inset-y-0 left-0 w-sidebar bg-bg-primary/95 border-r border-border flex flex-col z-[100] backdrop-blur-20 max-md:hidden">
+            <a href="../index.html" class="flex items-center gap-2 px-6 py-6 no-underline border-b border-border [&>img]:w-8 [&>img]:h-8 [&>img]:rounded-md [&>img]:object-cover [&>span]:font-display [&>span]:text-base-1 [&>span]:font-bold [&>span]:uppercase [&>span]:tracking-cw-2 [&>span]:text-text-primary"><img src="../assets/logo.jpeg" alt="CW"><span>Crypto
+                    World</span></a>
+            <nav class="flex-1 flex flex-col py-4">
+                <a href="./dashboard.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="dashboard"></span> Dashboard</a>
+                <a href="./markets.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="markets"></span> Markets</a>
+                <a href="./trade.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="trade"></span> Trade</a>
+                <a href="./history.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6 text-accent-light bg-accent/10 border-accent hover:text-accent-light hover:bg-accent/10"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-100" data-icon="history"></span> History</a>
+                <a href="./positions.html" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="positions"></span> Positions</a>
+            </nav>
+            <div class="px-6 py-4 border-t border-border"><a href="#" class="flex items-center gap-4 px-6 py-3 text-text-secondary no-underline text-xs-9 font-medium border-l-3 border-transparent my-0.5 transition-all duration-200 ease-cw-ease hover:text-text-primary hover:bg-accent/6" id="logoutBtn"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0 opacity-70" data-icon="logout"></span>
+                    Logout</a></div>
+        </aside>
+
+        <div class="flex-1 ml-sidebar p-8 min-h-full max-md:ml-0 max-md:p-4 max-md:pb-20">
+            <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+                <h1 class="font-display text-base-16 font-semibold uppercase tracking-cw-1">Trade History</h1>
+                <div class="flex gap-4 items-center flex-wrap">
+                    <input type="text" class="w-full py-13 px-4 bg-bg-secondary/80 border border-border rounded-cw-sm text-text-primary font-body text-base-95 transition-[border-color,box-shadow] duration-250 ease-cw-ease outline-none placeholder:text-text-muted hover:border-accent/25 focus:border-accent focus:shadow-input-focus max-w-160" id="filterSymbol" placeholder="Filter symbol..."
+                       >
+                    <div class="flex gap-1 bg-bg-secondary/60 p-1 rounded-cw-sm" id="sideFilter">
+                        <button class="px-4 py-2 bg-transparent text-text-secondary font-body text-xs-82 font-medium rounded-md cursor-pointer transition-all duration-200 ease-cw-ease hover:text-text-primary bg-accent/15 text-accent-light hover:text-accent-light" data-side="all">All</button>
+                        <button class="px-4 py-2 bg-transparent text-text-secondary font-body text-xs-82 font-medium rounded-md cursor-pointer transition-all duration-200 ease-cw-ease hover:text-text-primary" data-side="BUY">Buy</button>
+                        <button class="px-4 py-2 bg-transparent text-text-secondary font-body text-xs-82 font-medium rounded-md cursor-pointer transition-all duration-200 ease-cw-ease hover:text-text-primary" data-side="SELL">Sell</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-bg-card border border-border rounded-cw-md overflow-hidden mb-8">
+                <div class="p-0" id="historyPanel">
+                    <div class="flex flex-col items-center justify-center p-16 text-center gap-4 min-h-200">
+                        <div class="w-10 h-10 border-[3px] border-border border-t-accent rounded-full animate-spin-slow mx-auto"></div>
+                        <p class="text-text-secondary leading-17">Loading trade history...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="hidden fixed inset-x-0 bottom-0 bg-bg-primary/95 border-t border-border backdrop-blur-20 z-[100] py-2 pb-[max(8px,env(safe-area-inset-bottom))] max-md:block">
+        <div class="flex items-center justify-around">
+            <a href="./dashboard.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="dashboard"></span>Dashboard</a>
+            <a href="./markets.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="markets"></span>Markets</a>
+            <a href="./trade.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="trade"></span>Trade</a>
+            <a href="./history.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary text-accent-light"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="history"></span>History</a>
+            <a href="./positions.html" class="flex flex-col items-center gap-1 px-3 py-1.5 text-text-muted no-underline text-xs-65 font-medium transition-colors duration-200 ease-cw-ease hover:text-text-primary"><span class="inline-flex h-5 w-5 items-center justify-center shrink-0" data-icon="positions"></span>Positions</a>
+        </div>
+    </nav>
+    </main>
+    <script type="module" src="../js/nav-icons.js"></script>
+    <script type="module" src="../js/history.js"></script>
+    <script type="module" src="../js/footer.js"></script>
+    <cw-footer class="block w-full"></cw-footer>
+</body>
+
+</html>
+
+
